@@ -2,14 +2,15 @@ import inspect
 import numpy as np
 
 from openmdao.api import ExplicitComponent
+from openmdao.core.component import Component
 
-_full_out_args = inspect.getfullargspec(ExplicitComponent.add_output)
+_full_out_args = inspect.getfullargspec(Component.add_output)
 _allowed_out_args = set(_full_out_args.args[3:] + _full_out_args.kwonlyargs)
 
 
 class UnitCompBase(ExplicitComponent):
 
-    def initialize(self): 
+    def initialize(self):
         self.options.declare('fl_name')
 
     def setup_io(self):
